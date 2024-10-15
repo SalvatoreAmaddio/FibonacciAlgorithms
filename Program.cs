@@ -4,28 +4,35 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine("Writing first 10 Fibonacci numbers");
-        for (int i = 0; i <= 10; i++)
-        {
-            Console.WriteLine(RecursiveFibonacci(i));
-        }
-
-        Console.WriteLine("----------------------");
-        Console.WriteLine("Writing first 500 Fibonacci numbers");
-        for (int i = 0; i <= 500; i++)
-        {
-            Console.WriteLine(Fibonacci(i));
-        }
-
-        Console.WriteLine("--------------");
-        Console.WriteLine("Writing first 10 Fibonacci numbers by using Binet's formula");
-        for (int i = 0; i <= 10; i++)
-        {
-            Console.WriteLine(FibonacciBinet(i));
-        }
-
+        CalculateFibonacciSequenceUpTo(10);       
     }
 
+    public static void CalculateFibonacciSequenceUpTo(int n) 
+    {
+        BigInteger a = 0;
+        BigInteger b = 1;
+
+        for (int i = 1; i <= n; i++)
+        {
+            a = 0;
+            b = 1;
+
+            if (i <= 1)
+            {
+                Console.WriteLine($"{i}: {i}");
+                continue;
+            }
+
+            for (int y = 2; y <= i; y++)
+            {
+                BigInteger temp = a + b;
+                a = b;
+                b = temp;
+            }
+
+            Console.WriteLine($"{i}: {b}");
+        }
+    }
 
     /// <summary>
     /// Not suitable for long iterations because of its recursive nature.
